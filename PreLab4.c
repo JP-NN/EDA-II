@@ -37,5 +37,5 @@ int main(){
         printf("no esta");
     }
 
-    printf("El numero ingresado se encuentra en el indice:%d",BusquedaBinariaIt(lista,9,3))
+    printf("\nEl numero ingresado se encuentra en el indice:%d",BusquedaBinariaIt(lista,9,3));
 }
