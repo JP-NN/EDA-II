@@ -22,5 +22,5 @@ int BusquedaBinariaIt(int list[], int tam, int key){
 int main(){
     int lista[]={1,2,3,4,5,6,7,8,9};
 
-    printf("%d",lista[2]);
+    printf("%d",BusquedaBinariaIt(lista,9,3));
 }
