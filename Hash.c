@@ -29,7 +29,6 @@ void Product_Print( Product* p )
 }
 
 
-
 typedef struct
 {
    /**
@@ -265,7 +264,6 @@ int main()
    int32_t idx = HT_Search( tabla, 5000 );
    assert( idx == 4 ); // esperamos el índice 4
    Product_Print( &productos[ idx ] );
-
 
    HT_Delete( &tabla );
    assert( tabla == NULL );
