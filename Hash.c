@@ -226,6 +226,10 @@ bool HT_IsFull( const Hash_table* ht )
 
 #define MAX_PRODUCTS 5
 
+int division(int key, int m){
+    return key%=m;
+}
+
 //----------------------------------------------------------------------
 // Driver program 
 //----------------------------------------------------------------------
