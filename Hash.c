@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <assert.h>
+#include <math.h>
 
 #include <stdint.h>
 // para int32_t, uint32_t, etc.
@@ -228,6 +229,19 @@ bool HT_IsFull( const Hash_table* ht )
 
 int division(int key, int m){
     return key%=m;
+}
+
+int msd(int key, int m){
+
+int z = pow(10,(3/2));
+
+key = pow(key,2);
+
+int num = key%z;
+int den = pow(10,(3/2));
+int msd= (num/den)%m;
+
+return msd;
 }
 
 //----------------------------------------------------------------------
