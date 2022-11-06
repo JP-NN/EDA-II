@@ -448,8 +448,7 @@ void Graph_Print_bfs( Graph* g, int depth )
 
       // LEVEL 0:
       printf( vertex->neighbors ? "Has neighbors\n" : "Has no neighbors\n" );
-      printf("La distancia es:%d\n",Vertex_GetDistance(g));
-      printf("Su predecesor es:%d\n",Vertex_GetPredecessor(g));
+      
 
       // LEVEL 1:
       if( depth > 0 )
@@ -472,8 +471,8 @@ void Graph_Print_bfs( Graph* g, int depth )
       }
    } printf( "\n" );
    
-   /*printf("La distancia es:%d\n",Vertex_GetDistance(g));
-   printf("Su predecesor es:%d\n",Vertex_GetPredecessor(g));*/
+   printf("La distancia es:%d\n",Vertex_GetDistance(g));
+   printf("Su predecesor es:%d\n",Vertex_GetPredecessor(g));
 }
 
 /**
