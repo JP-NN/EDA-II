@@ -469,10 +469,12 @@ void Graph_Print_bfs( Graph* g, int depth )
          } if( vertex->neighbors ) printf( " Nil\n" );
              
       }
+      printf("La distancia es:%d\n",vertex->distance);
+      printf("Su predecesor es:%d\n",vertex->predecessor);
    } printf( "\n" );
    
-   printf("La distancia es:%d\n",Vertex_GetDistance(g));
-   printf("Su predecesor es:%d\n",Vertex_GetPredecessor(g));
+   /*printf("La distancia es:%d\n",Vertex_GetDistance(g));
+   printf("Su predecesor es:%d\n",Vertex_GetPredecessor(g));*/
 }
 
 /**
@@ -919,4 +921,5 @@ Graph_Print_bfs( grafo, PRINT_LEVEL );
 Graph_Delete( &grafo );
    assert( grafo == NULL );
 }
+
 
