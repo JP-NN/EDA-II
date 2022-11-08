@@ -910,11 +910,11 @@ Graph_AddEdge(grafo, 400, 500);
 Graph_AddEdge(grafo, 500, 800);
 Graph_AddEdge(grafo, 500, 100);
 
-/*Descomenta las siguientes líneas conforme vayas avanzando en la // solución de esta práctica:
+
 printf( "BFS: \n" );
 bfs( grafo, Graph_GetVertexByKey( grafo, 100 ) );
   
-printf( "DFS: \n" );
+/*printf( "DFS: \n" );
 dfs( grafo, 100 );*/
 
 Graph_Print_bfs( grafo, PRINT_LEVEL );
