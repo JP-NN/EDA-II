@@ -921,5 +921,3 @@ Graph_Print_bfs( grafo, PRINT_LEVEL );
 Graph_Delete( &grafo );
    assert( grafo == NULL );
 }
-
-
