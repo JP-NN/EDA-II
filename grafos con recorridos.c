@@ -436,6 +436,42 @@ void Graph_Print( Graph* g, int depth )
    } printf( "\n" );
 }
 
+void Graph_Print_dfs( Graph* g, int depth )
+{
+   for( size_t i = 0; i < g->len; ++i )
+   {
+      Vertex* vertex = &g->vertices[ i ];
+      // para simplificar la notación. 
+
+      printf( "\n=== Vertex[ %ld ] ===\n", i );
+      printf( "<%d, %ld>\n", vertex->kv.key, vertex->kv.index );
+
+      // LEVEL 0:
+      printf( vertex->neighbors ? "Has neighbors\n" : "Has no neighbors\n" );
+
+      // LEVEL 1:
+      if( depth > 0 )
+      {
+         for( Node* node = vertex->neighbors; node != NULL; node = node->next )
+         {
+            DBG_PRINT( "Print():(Node:%p, (*Node.index:%ld, *Node.next:%p))\n", node, node->index, node->next );
+            
+            printf( " %d ", g->vertices[ node->index ].kv.key );
+
+            // LEVEL 2:
+            if( depth > 1 )
+            {
+               printf( "(Node:%p) ", node );
+            }
+
+            printf( "->" );
+         } if( vertex->neighbors ) printf( " Nil\n" );
+      }
+      printf("El tiempo de descubrimento:%d\n",vertex->discovery_time);
+      printf("El tiempo de finalizacion:%d\n",vertex->finish_time);
+   } printf( "\n" );
+}
+
 void Graph_Print_bfs( Graph* g, int depth )
 {
    for( size_t i = 0; i < g->len; ++i )
@@ -473,8 +509,7 @@ void Graph_Print_bfs( Graph* g, int depth )
       printf("Su predecesor es:%d\n",vertex->predecessor);
    } printf( "\n" );
    
-   /*printf("La distancia es:%d\n",Vertex_GetDistance(g));
-   printf("Su predecesor es:%d\n",Vertex_GetPredecessor(g));*/
+   
 }
 
 /**
@@ -911,13 +946,13 @@ Graph_AddEdge(grafo, 500, 800);
 Graph_AddEdge(grafo, 500, 100);
 
 
-printf( "BFS: \n" );
-bfs( grafo, Graph_GetVertexByKey( grafo, 100 ) );
+/*printf( "BFS: \n" );
+bfs( grafo, Graph_GetVertexByKey( grafo, 100 ) );*/
   
-/*printf( "DFS: \n" );
-dfs( grafo, 100 );*/
+printf( "DFS: \n" );
+dfs( grafo, 100 );
 
-Graph_Print_bfs( grafo, PRINT_LEVEL );
+Graph_Print_dfs( grafo, PRINT_LEVEL );
 Graph_Delete( &grafo );
    assert( grafo == NULL );
 }
