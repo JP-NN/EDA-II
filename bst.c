@@ -179,7 +179,9 @@ bool BST_Insert( BST* bst, Product* p )
  */
 void BST_Delete_all( BST* bst )
 {
-   if (!bst) return;
+   if (!bst){
+     return;
+   }
    
 
 }
@@ -210,6 +212,7 @@ static void postorder( Node* parent, void (*visit)( Product* ) )
    {
       postorder(parent->left,visit);
       postorder(parent->right,visit);
+      visit(&parent->product.barcode);
    }
 }
 
@@ -324,7 +327,11 @@ void print( Product* p )
 
 void BST_Min( BST* bst, int key, Product* p )
 {
-   
+   while (bst->root->left!=NULL)
+   {
+      bst->root->left++;
+      printf("\nEcontranding menoring\n");
+   }
 }
 
 void BST_Max( BST* bst, int key, Product* p )
@@ -434,6 +441,9 @@ int main()
 
    printf( "Inorder:\n" );
    BST_Traverse( b, BST_INORDER, print );
+
+   printf("Min value encontnra sdiagf");
+   BST_Min(b,500, &p);
 
    printf( "Postorder:\n" );
    BST_Traverse( b, BST_POSTORDER, print );
