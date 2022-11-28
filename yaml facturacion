@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+typedef struct
+{
+  char nombre[32];
+  int semestre;
+  float promedio;
+} Alumno;
+
+typedef struct
+{
+  char profesor[32];
+  int grupo;
+  char semestre[8];
+  int anio;
+  bool finalizado;
+  Alumno alumnos[10];
+} Grupo;
+
+typedef struct{
+    int barcode;
+    char name[32];
+    float price;
+}Product;
+
+typedef struct{
+   Product product;
+   int quantity;
+}Item;
+
+typedef struct{
+    char buyer[32];
+    char date[11];
+    Item items[5];
+    float subtotal;
+    float vat;
+    float total;
+    bool payment;
+}Invoice;
+
+#define INDENT_SPACES 2
+#define MAX_ALUMS 3
+#define MAX_PRODUCTS 5
+int
+main (){
+    
+  /*Grupo g03 = {
+    .profesor = "Fco",
+    .grupo = 3,
+    .semestre = "2022-1",
+    .anio = 2021,
+    .finalizado = false,
+    .alumnos[0] = {.nombre = "Bart",.semestre = 3,.promedio =
+		   6.1},.alumnos[1] = {.nombre = "Liza",.semestre =
+				       2,.promedio = 10.0},.alumnos[2] =
+      {.nombre = "Milhouse",.semestre = 3,.promedio = 9.5},
+  };*/
+  
+  float sum;
+  
+  Invoice test={
+      .buyer="Jp",
+      .date="27-11-22",
+      .items[0]={.product.barcode=1234,.product.name="leche",.product.price=35.0,.quantity=2},
+      .items[1]={.product.barcode=4321,.product.name="pan",.product.price=20.2,.quantity=1},
+      .items[2]={.product.barcode=1478,.product.name="sabritas",.product.price=17,.quantity=1},
+      .items[3]={.product.barcode=3548,.product.name="calculadora",.product.price=350,.quantity=1},
+      .items[4]={.product.barcode=3878,.product.name="lapiz",.product.price=25,.quantity=5},
+      .vat=1.6,
+      .payment=true
+  };
+  
+  for(int i=0;i<MAX_PRODUCTS;i++){
+        test.subtotal+=test.items[i].product.price*test.items[i].quantity;
+    }
+    
+    test.total=test.vat*test.subtotal;
+
+  
+  FILE *yaml_output = fopen("test.yml", "w");
+  if (!yaml_output){
+      printf ("Error abriendo el archivo\n");
+      exit (1);
+    }
+  fprintf (yaml_output, "---\n");
+  fprintf (yaml_output, "Comprador: %s\n", test.buyer);
+  fprintf (yaml_output, "fecha: %s\n", test.date);
+  fprintf (yaml_output, "Subtotal: %f\n", test.subtotal);
+  fprintf (yaml_output, "Total: %f\n", test.total);
+  test.payment==true?fprintf (yaml_output, "Pagado"):fprintf (yaml_output, "No Pagado");
+// inserta el resto de la informaciC3n a este mismo nivel: grupo, semestre, anio y finalizado
+
+  int depth = 0;
+
+  ++depth;
+  // agregamos un nivel cada que entremos a un nuevo registro/lista
+  /*fprintf (yaml_output, "alumnos:\n");
+  for (size_t i = 0; i < MAX_ALUMS; ++i)
+    {
+      // inserta los espacios necesarios:
+      for (size_t indent = 0; indent < (depth * 2); ++indent)
+	{
+	  fprintf (yaml_output, " ");
+	}
+      fprintf (yaml_output, "- ");
+      fprintf (yaml_output, "semestre: %d\n", g03.alumnos[i].semestre);
+      for (size_t indent = 0; indent < (depth * 2) + INDENT_SPACES; ++indent)
+	{
+	  fprintf (yaml_output, " ");
+	}
+      fprintf (yaml_output, "nombre: %s\n", g03.alumnos[i].nombre);
+      for (size_t indent = 0; indent < (depth * 2) + INDENT_SPACES; ++indent)
+	{
+	  fprintf (yaml_output, " ");
+	}
+      fprintf (yaml_output, "promedio: %0.2f\n", g03.alumnos[i].promedio);
+    }*/
+  fprintf (yaml_output, "\n...");
+  fclose (yaml_output);
+
+}
+
