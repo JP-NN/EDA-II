@@ -89,7 +89,10 @@ main (){
   fprintf (yaml_output, "fecha: %s\n", test.date);
   fprintf (yaml_output, "Subtotal: %f\n", test.subtotal);
   fprintf (yaml_output, "Total: %f\n", test.total);
-  test.payment==true?fprintf (yaml_output, "Pagado"):fprintf (yaml_output, "No Pagado");
+  for(int i=0;i<MAX_PRODUCTS;i++){
+        fprintf(yaml_output, "Producto [%d], nombre:%s, barcode:%d, precio:%f, cantidad:%d \n",i+1, test.items[i].product.name,test.items[i].product.barcode,test.items[i].product.price, test.items[i].quantity);
+    }
+  test.payment==true?fprintf (yaml_output, "Tarjeta"):fprintf (yaml_output, "Efectivo");
 // inserta el resto de la informaciC3n a este mismo nivel: grupo, semestre, anio y finalizado
 
   int depth = 0;
